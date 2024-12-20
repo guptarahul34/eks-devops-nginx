@@ -8,9 +8,14 @@ phases:
       commands:
         # Docker Image Tag with Date Time & Code Buiild Resolved Source Version
         - TAG="$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+        - echo $TAG
+        - echo "Repo URI - $REPOSITORY_URI"
+        - echo "Cluster Name - $EKS_CLUSTER_NAME"
+        - echo "Role ARN - $EKS_KUBECTL_ROLE_ARN"
         # Update Image tag in our Kubernetes Deployment Manifest        
         - echo "Update Image tag in kube-manifest..."
-        - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' kube-manifests/01-DEVOPS-Nginx-Deployment.yml
+        - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' application-manifests/kube-manifests/01-DEVOPS-Nginx-Deployment.yml
+        - cat application-manifests/kube-manifests/01-DEVOPS-Nginx-Deployment.yml
         # Verify AWS CLI Version        
         - echo "Verify AWS CLI Version..."
         - aws --version

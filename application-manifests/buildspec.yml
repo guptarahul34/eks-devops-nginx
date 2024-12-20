@@ -64,4 +64,4 @@ phases:
 artifacts:
   files: 
     - build.json   
-    - kube-manifests/*
+    - application-manifests/kube-manifests/*

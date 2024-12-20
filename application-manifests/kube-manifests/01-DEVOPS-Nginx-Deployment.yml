@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: eks-devops
-          image: CONTAINER_IMAGE
+          image: 637423185685.dkr.ecr.us-east-1.amazonaws.com/eks-devops-nginx:2024-12-20.13.58.23.4af87465
           ports:
             - containerPort: 80
